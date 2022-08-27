@@ -1,58 +1,57 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormMode } from 'src/app/enum/formMode.enum';
-import { Permission } from 'src/app/models/permission.model';
+import { User } from 'src/app/models/user.model';
 import { SharedService } from 'src/SharedService.service';
 
 @Component({
-  selector: 'app-detail-permission',
-  templateUrl: './detail-permission.component.html',
-  styleUrls: ['./detail-permission.component.css']
+  selector: 'app-detail-user',
+  templateUrl: './detail-user.component.html',
+  styleUrls: ['./detail-user.component.css']
 })
-export class DetailPermissionComponent implements OnInit {
+export class DetailUserComponent implements OnInit {
 
   title: string;
   formMode = FormMode;
   @Input() mode: FormMode;
-  @Input() permission: Permission;
+  @Input() user: User;
   @Output() onChangeMode = new EventEmitter<any>();
-
+  
   constructor(private service: SharedService,private toastr: ToastrService) { 
-    this.permission = new Permission();
+    this.user = new User();
+
   }
 
   ngOnInit() {
     switch (this.mode) {
       case FormMode.create:
-        this.title = "Create new permission"
+        this.title = "Create new user"
         break;
       case FormMode.edit:
-        this.title = "Edit permission"
+        this.title = "Edit user"
         break;
       case FormMode.view:
-        this.title = "View permission"
+        this.title = "View user"
         break;
       default:
-        this.title = "View permission"
+        this.title = "View user"
         break;
     }
   }
-
   onSave(mode: FormMode) {
     if (mode == FormMode.create) {
-      this.service.insertPermmision(this.permission).subscribe(result => {
-        this.permission = new Permission();
+      this.service.insertUser(this.user).subscribe(result => {
+        this.user = new User();
         this.toastr.success(result,"Success");
       }, error => this.toastr.error(error,"Error"));
     }
     else if (mode == FormMode.edit) {
-      this.service.updatetPermmision(this.permission).subscribe(result => {
+      this.service.updatetUser(this.user).subscribe(result => {
         this.toastr.success(result,"Success");
         this.onBack();
       }, error => this.toastr.error(error,"Error"));
     }
   }
-  
 
   public onBack() {
     this.onChangeMode.emit(FormMode.table);

@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    <h2> {{title}}</h2>
+  
+  
+    <button type="button" class="mb-2 btn btn-primary" (click)="onBack()">Back</button>
+  
+    <form>
+      <div class="form-group">
+        <label for="" hidden>Id</label>
+        <input type="number" hidden class="form-control" [(ngModel)]="user.id" name="id" />
+      </div>
+      <div class="form-group">
+        <label for="">First name</label>
+        <input type="text" required [disabled]="mode==formMode.view" class="form-control" [(ngModel)]="user.firstName" name="firstName" />
+      </div>
+      <div class="form-group">
+        <label for="">Last name</label>
+        <input type="text" required [disabled]="mode==formMode.view" class="form-control" [(ngModel)]="user.lastName" name="lastName" />
+      </div>
+      <div class="form-group">
+        <label for="">Username</label>
+        <input type="text" required [disabled]="mode!=formMode.create" class="form-control" [(ngModel)]="user.username" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="">Password</label>
+        <input type="text" required [disabled]="mode!=formMode.create" class="form-control" [(ngModel)]="user.password" name="password" />
+      </div>
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" required [disabled]="mode==formMode.view" class="form-control" [(ngModel)]="user.email" name="email" />
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="user.status" name="status">
+        <label class="form-check-label" for="flexCheckDefault">
+          Status
+        </label>
+      </div>
+      <div class="form-group">
+        <button type="button" class="mt-2 btn btn-primary" (click)="onSave(mode)" type="submit" [hidden]="mode==formMode.view">Save</button>
+      </div>
+      
+    </form>
+  </div>
+  

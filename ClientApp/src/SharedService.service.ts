@@ -38,7 +38,7 @@ export class SharedService {
     return this.http.get<any>(this.ApiUrl + '/user/GetUser', user);
   }
   insertUser(user: any) {
-    return this.http.post(this.ApiUrl + '/user/InserUser', user, { responseType: 'text' });
+    return this.http.post(this.ApiUrl + '/user/InsertUser', user, { responseType: 'text' });
   }
   updatetUser(user: any) {
     return this.http.put(this.ApiUrl + '/user/UpdateUser', user, { responseType: 'text' });

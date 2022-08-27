@@ -11,13 +11,17 @@ import { DetailPermissionComponent } from './permission/detail-permission/detail
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserComponent } from './user/user.component';
+import { DetailUserComponent } from './user/detail-user/detail-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     PermissionComponent,
-    DetailPermissionComponent
+    DetailPermissionComponent,
+    UserComponent,
+    DetailUserComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       progressBar: true
     }),
     RouterModule.forRoot([
+      { path: '', component: UserComponent },
+      { path: 'user', component: UserComponent },
       { path: 'permission', component: PermissionComponent },
     ])
   ],
