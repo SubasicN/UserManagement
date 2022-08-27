@@ -47,4 +47,24 @@ export class SharedService {
     return this.http.delete(this.ApiUrl + '/user/DeleteUser?id=' + id, { responseType: 'text' });
   }
 
+  /*UserPermission table*/
+  getAllUsersPermission(): Observable<any[]> {
+    return this.http.get<any>(this.ApiUrl + '/user/GetAllUsersPermission');
+  }
+  getPermissionForUser(user : any) {
+    return this.http.get<any>(this.ApiUrl + '/user/GetPermissionForUser',user);
+  }
+  getUserPermission(userPermission: any) {
+    return this.http.get<any>(this.ApiUrl + '/user/GetUserPermission', userPermission);
+  }
+  insertUserPermission(userPermission: any) {
+    return this.http.post(this.ApiUrl + '/user/InsertUserPermission', userPermission, { responseType: 'text' });
+  }
+  updatetUserPermission(userPermission: any) {
+    return this.http.put(this.ApiUrl + '/user/UpdateUserPermission', userPermission, { responseType: 'text' });
+  }
+  deleteUserPermission(id: any) {
+    return this.http.delete(this.ApiUrl + '/user/DeleteUserPermission?id=' + id, { responseType: 'text' });
+  }
+
 }
