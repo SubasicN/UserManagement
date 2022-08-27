@@ -55,10 +55,10 @@ namespace UserManagement.Controllers
             return Ok("Data updated");
         }
 
-        [HttpPost(nameof(DeletePermission))]
-        public IActionResult DeletePermission(Permission permission)
+        [HttpDelete(nameof(DeletePermission))]
+        public IActionResult DeletePermission(int id)
         {
-            _permissionService.DeletePermission(permission.Id);
+            _permissionService.DeletePermission(id);
             return Ok("Data deleted");
         }
 

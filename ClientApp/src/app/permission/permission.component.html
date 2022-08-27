@@ -1,0 +1,61 @@
+<div *ngIf="mode == formMode.table">
+    <h1 id="tableLabel">Permission</h1>
+  
+    <p *ngIf="!permissions"><em>Loading...</em></p>
+  
+    <div class="dls-menu-item" style="float: right;">
+      <button (click)="onAdd()" type="button" class="btn btn-outline-success">
+        Add new permission</button>
+    </div>
+  
+    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="permissions">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Code</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let permission of permissions">
+          <td>{{ permission.id }}</td>
+          <td>{{ permission.code }}</td>
+          <td>{{ permission.description }}</td>
+          <td>
+            <button (click)="onView(permission)" type="button" class="btn btn-outline-info">View</button>
+            <button (click)="onEdit(permission)" type="button"  class="ml-1 btn btn-outline-primary">Edit</button>
+            <button (click)="onDelete(permission,mymodal)" type="button" class="ml-1 btn btn-outline-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>  
+  </div>
+
+  
+  <div id="comp-render" *ngIf="mode == formMode.create">
+    <app-detail-permission [mode]="mode" (onChangeMode)="changeMode($event)"></app-detail-permission>
+  </div>
+  
+  <div id="comp-render" *ngIf="mode == formMode.edit">
+    <app-detail-permission [mode]="mode" [permission]="permissionForEdit" (onChangeMode)="changeMode($event)"></app-detail-permission>
+  </div>
+  
+  <div id="comp-render" *ngIf="mode == formMode.view">
+    <app-detail-permission [mode]="mode" [permission]="permissionForView" (onChangeMode)="changeMode($event)"></app-detail-permission>
+  </div>
+     
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div>
+</ng-template>

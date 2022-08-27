@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <h2> {{title}}</h2>
+  
+  
+    <button type="button" class="mb-2 btn btn-primary" (click)="onBack()">Back</button>
+  
+    <form>
+      <div class="form-group">
+        <label for="" hidden>Id</label>
+        <input type="number" hidden class="form-control" [(ngModel)]="permission.id" name="id" />
+      </div>
+      <div class="form-group">
+        <label for="">Code</label>
+        <input type="text" required [disabled]="mode==formMode.view" class="form-control" [(ngModel)]="permission.code" name="code" />
+      </div>
+      <div class="form-group">
+        <label for="">Description</label>
+        <input type="text" required [disabled]="mode==formMode.view" class="form-control" [(ngModel)]="permission.description" name="description" />
+      </div>
+      <div class="form-group">
+        <button type="button" class="mt-2 btn btn-primary" (click)="onSave(mode)" type="submit" [hidden]="mode==formMode.view">Save</button>
+      </div>
+    </form>
+  </div>
+  
