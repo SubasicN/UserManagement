@@ -31,7 +31,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button  type="button" class="ml-1 btn btn-outline-success">Assign</button>
+            <button (click)="onAssign(user)" type="button" class="ml-1 btn btn-outline-success">Assign</button>
             <button (click)="onView(user)" type="button" class="btn btn-outline-info">View</button>
             <button (click)="onEdit(user)" type="button"  class="ml-1 btn btn-outline-primary">Edit</button>
             <button (click)="onDelete(user,mymodal)" type="button" class="ml-1 btn btn-outline-danger">Delete</button>
@@ -51,7 +51,7 @@
   </div>
   
   <div id="comp-render" *ngIf="mode == formMode.view">
-    <app-detail-user [mode]="mode" [user]="userForView" (onChangeMode)="changeMode($event)"></app-detail-user>
+    <app-detail-user [mode]="mode" [modeForAssign]="modeForAssign" [user]="userForView" (onChangeMode)="changeMode($event)"></app-detail-user>
   </div>
      
 <ng-template #mymodal let-modal>

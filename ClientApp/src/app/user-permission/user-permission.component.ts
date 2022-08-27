@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/SharedService.service';
@@ -22,11 +23,17 @@ export class UserPermissionComponent implements OnInit {
   public userPermissionForEdit: UserPermission;
   public userPermissionForAdd: UserPermission;
   @Input() user: User;
+  @Input() modeForAssign: FormMode;
 
-  constructor(private service: SharedService, private toastr: ToastrService,private modalService: NgbModal) { }
+  constructor(private route: ActivatedRoute,private service: SharedService, private toastr: ToastrService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getPermissionsForUser();
+
+    if(this.modeForAssign == this.formMode.create){
+      this.onAdd();
+    }
+
   }
 
   getPermissionsForUser() {

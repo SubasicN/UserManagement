@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/SharedService.service';
@@ -19,11 +19,12 @@ export class UserComponent implements OnInit {
 
   public users?: User[];
   public mode: FormMode = FormMode.table;
+  public modeForAssign: FormMode = FormMode.create;
   public order: boolean = false;
   public userForEdit: User;
   public userForView: User;
   
-  constructor(http: HttpClient, private service: SharedService,private toastr: ToastrService,private modalService: NgbModal) { }
+  constructor(private router:Router ,http: HttpClient, private service: SharedService,private toastr: ToastrService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.refreshList();
@@ -46,6 +47,12 @@ export class UserComponent implements OnInit {
   onView(user: User) {
     this.userForView = user;
     this.mode = FormMode.view;
+    this.modeForAssign = FormMode.view;
+  }
+  onAssign(user:User){
+    this.userForView = user;
+    this.mode = FormMode.view;
+    this.modeForAssign = FormMode.create;
   }
   onDelete(user: User,content : any) {
     
