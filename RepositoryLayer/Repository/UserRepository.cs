@@ -30,7 +30,7 @@ namespace RepositoryLayer.Repository
 
         public IEnumerable<User> GetAll()
         {
-            return _context.Users.Include(m => m.Permissions).AsEnumerable();
+            return _context.Users.AsEnumerable();
         }
 
         public void Insert(User entity)

@@ -1,4 +1,5 @@
 using DomainLayer;
+using DomainLayer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using RepositoryLayer;
 using RepositoryLayer.Repository;
 using ServiceLayer.PermissionService;
+using ServiceLayer.UserPermissionService;
 using ServiceLayer.UserService;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,8 @@ namespace UserManagement
             services.AddTransient<IPermissionService,PermissionService>();
             services.AddTransient<IRepository<User>, UserRepository>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<UserPremissionRepository>();
+            services.AddTransient<IUserPermissionService, UserPermissionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

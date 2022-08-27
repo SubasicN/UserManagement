@@ -1,4 +1,5 @@
 ﻿using DomainLayer;
+using DomainLayer.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,5 +16,6 @@ namespace RepositoryLayer
 
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserPermission> UserPermission { get; set; }
     }
 }

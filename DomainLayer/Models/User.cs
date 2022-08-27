@@ -24,7 +24,5 @@ namespace DomainLayer
         public string Email { get; set; }
         [Required]
         public bool Status { get; set; }
-
-        public List<Permission> Permissions { get; set; }
     }
 }
