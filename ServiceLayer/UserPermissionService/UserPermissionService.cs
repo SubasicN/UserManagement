@@ -27,9 +27,9 @@ namespace ServiceLayer.UserPermissionService
             return _repository.GetAll();
         }
 
-        public IEnumerable<UserPermission> GetPermissionForUser(User user)
+        public IEnumerable<UserPermission> GetPermissionForUser(int userId)
         {
-            return _repository.GetPermissionForUser(user);
+            return _repository.GetPermissionForUser(userId);
         }
 
         public UserPermission GetUserPermission(int id)

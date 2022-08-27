@@ -13,6 +13,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserComponent } from './user/user.component';
 import { DetailUserComponent } from './user/detail-user/detail-user.component';
+import { UserPermissionComponent } from './user-permission/user-permission.component';
+import { DetailUserPermissionComponent } from './user-permission/detail-user-permission/detail-user-permission.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DetailUserComponent } from './user/detail-user/detail-user.component';
     PermissionComponent,
     DetailPermissionComponent,
     UserComponent,
-    DetailUserComponent
+    DetailUserComponent,
+    UserPermissionComponent,
+    DetailUserPermissionComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { DetailUserComponent } from './user/detail-user/detail-user.component';
       { path: '', component: UserComponent },
       { path: 'user', component: UserComponent },
       { path: 'permission', component: PermissionComponent },
+      { path: 'userPermission', component: UserPermissionComponent },
     ])
   ],
   providers: [SharedService],

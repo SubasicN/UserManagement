@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/SharedService.service';
@@ -53,9 +54,9 @@ export class UserComponent implements OnInit {
         this.toastr.success(result,'Success');
         this.refreshList();
       }, error => console.error(error));
-    })
+    },error => {})
   }
-
+  
   public changeMode(mode: FormMode): void {
     if (this.mode == FormMode.create || this.mode == FormMode.edit) {
       this.refreshList();

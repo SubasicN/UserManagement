@@ -42,9 +42,9 @@ namespace UserManagement.Controllers
         }
 
         [HttpGet(nameof(GetPermissionForUser))]
-        public IActionResult GetPermissionForUser(User user)
+        public IActionResult GetPermissionForUser(int userId)
         {
-            var result = _userPermissionService.GetPermissionForUser(user);
+            var result = _userPermissionService.GetPermissionForUser(userId);
             if (result != null)
                 return Ok(result);
             return BadRequest("No records found");

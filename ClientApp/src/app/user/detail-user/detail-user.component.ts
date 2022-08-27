@@ -14,6 +14,7 @@ export class DetailUserComponent implements OnInit {
   title: string;
   formMode = FormMode;
   @Input() mode: FormMode;
+  @Input() modeForAssign: FormMode;
   @Input() user: User;
   @Output() onChangeMode = new EventEmitter<any>();
   

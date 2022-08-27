@@ -56,7 +56,7 @@ export class PermissionComponent implements OnInit {
         this.toastr.success(result,'Success');
         this.refreshList();
       }, error => console.error(error));
-    })
+    },error => {})
   }
 
   public changeMode(mode: FormMode): void {

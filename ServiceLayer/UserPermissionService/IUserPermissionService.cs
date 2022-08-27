@@ -11,7 +11,7 @@ namespace ServiceLayer.UserPermissionService
         IEnumerable<UserPermission> GetAllUsersPermission();
 
         UserPermission GetUserPermission(int id);
-        IEnumerable<UserPermission> GetPermissionForUser(User user);
+        IEnumerable<UserPermission> GetPermissionForUser(int userId);
         void InsertUserPermission(UserPermission userPermission);
         void UpdateUserPermission(UserPermission userPermission);
         void DeleteUserPermission(int id);

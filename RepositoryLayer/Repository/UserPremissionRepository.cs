@@ -24,9 +24,11 @@ namespace RepositoryLayer.Repository
             _context.SaveChanges();
         }
 
-        public IEnumerable<UserPermission> GetPermissionForUser(User user)
+        public IEnumerable<UserPermission> GetPermissionForUser(int userId)
         {
-            return _context.UserPermission.Where(m => m.user.Id == user.Id).AsEnumerable();
+            return _context.UserPermission.Include(m=> m.user)
+                                          .Include(m => m.permission)
+                                          .Where(m => m.user.Id == userId).AsEnumerable();
         }
 
         public UserPermission Get(int id)
@@ -46,6 +48,8 @@ namespace RepositoryLayer.Repository
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
+            _context.Permissions.Attach(entity.permission);
+            _context.Users.Attach(entity.user);
             _context.UserPermission.Add(entity);
             _context.SaveChanges();
         }

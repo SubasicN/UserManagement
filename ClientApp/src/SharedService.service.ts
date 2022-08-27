@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-
+  headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+})
   readonly ApiUrl = "https://localhost:44332/api";
   constructor(private http: HttpClient) {
   }
@@ -49,22 +51,22 @@ export class SharedService {
 
   /*UserPermission table*/
   getAllUsersPermission(): Observable<any[]> {
-    return this.http.get<any>(this.ApiUrl + '/user/GetAllUsersPermission');
+    return this.http.get<any>(this.ApiUrl + '/userPermission/GetAllUsersPermission');
   }
-  getPermissionForUser(user : any) {
-    return this.http.get<any>(this.ApiUrl + '/user/GetPermissionForUser',user);
+  getPermissionForUser(userID : any): Observable<any[]> {
+    return this.http.get<any[]>(this.ApiUrl + '/userPermission/GetPermissionForUser?userId='+userID);
   }
   getUserPermission(userPermission: any) {
-    return this.http.get<any>(this.ApiUrl + '/user/GetUserPermission', userPermission);
+    return this.http.get<any>(this.ApiUrl + '/userPermission/GetUserPermission', userPermission);
   }
   insertUserPermission(userPermission: any) {
-    return this.http.post(this.ApiUrl + '/user/InsertUserPermission', userPermission, { responseType: 'text' });
+    return this.http.post(this.ApiUrl + '/userPermission/InsertUserPermission', userPermission, { responseType: 'text' });
   }
   updatetUserPermission(userPermission: any) {
-    return this.http.put(this.ApiUrl + '/user/UpdateUserPermission', userPermission, { responseType: 'text' });
+    return this.http.put(this.ApiUrl + '/userPermission/UpdateUserPermission', userPermission, { responseType: 'text' });
   }
   deleteUserPermission(id: any) {
-    return this.http.delete(this.ApiUrl + '/user/DeleteUserPermission?id=' + id, { responseType: 'text' });
+    return this.http.delete(this.ApiUrl + '/userPermission/DeleteUserPermission?id=' + id, { responseType: 'text' });
   }
 
 }
