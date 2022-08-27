@@ -3,12 +3,12 @@
 
     <p *ngIf="!userPermissions"><em>Loading...</em></p>
 
-    <div class="dls-menu-item" style="float: right;">
+    <div class="mb-3 dls-menu-item" style="float: right;">
         <button (click)="onAdd()" type="button" class="btn btn-outline-success"><i class="bi bi-person-plus"></i>
             Add new permissions for user</button>
     </div>
 
-    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="userPermissions">
+    <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="userPermissions">
         <thead>
             <tr>
                 <th>Id</th>
@@ -23,8 +23,8 @@
                 <td>{{ userPermission.permission.code }}</td>
                 <td>{{ userPermission.permission.description}}</td>
                 <td>
-                    <button (click)="onEdit(userPermission)" type="button" class="ml-1 btn btn-outline-primary">Edit</button>
-                    <button (click)="onDelete(userPermission,mymodal)" type="button" class="ml-1 btn btn-outline-danger">Delete</button>
+                    <button (click)="onEdit(userPermission)" type="button" class="ml-1 btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</button>
+                    <button (click)="onDelete(userPermission,mymodal)" type="button" class="ml-1 btn btn-outline-danger"><i class="bi bi-trash"></i>Delete</button>
                 </td>
             </tr>
         </tbody>

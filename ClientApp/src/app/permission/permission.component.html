@@ -3,12 +3,12 @@
   
     <p *ngIf="!permissions"><em>Loading...</em></p>
   
-    <div class="dls-menu-item" style="float: right;">
+    <div class="mb-3 dls-menu-item" style="float: right;">
       <button (click)="onAdd()" type="button" class="btn btn-outline-success">
         Add new permission</button>
     </div>
   
-    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="permissions">
+    <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="permissions">
       <thead>
         <tr>
           <th>Id</th>
@@ -23,9 +23,9 @@
           <td>{{ permission.code }}</td>
           <td>{{ permission.description }}</td>
           <td>
-            <button (click)="onView(permission)" type="button" class="btn btn-outline-info">View</button>
-            <button (click)="onEdit(permission)" type="button"  class="ml-1 btn btn-outline-primary">Edit</button>
-            <button (click)="onDelete(permission,mymodal)" type="button" class="ml-1 btn btn-outline-danger">Delete</button>
+            <button (click)="onView(permission)" type="button" class="btn btn-outline-info"><i class="bi bi-eye"></i>View</button>
+            <button (click)="onEdit(permission)" type="button"  class="ml-1 btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</button>
+            <button (click)="onDelete(permission,mymodal)" type="button" class="ml-1 btn btn-outline-danger"><i class="bi bi-trash"></i>Delete</button>
           </td>
         </tr>
       </tbody>

@@ -3,12 +3,12 @@
   
     <p *ngIf="!users"><em>Loading...</em></p>
   
-    <div class="dls-menu-item" style="float: right;">
+    <div class="mb-3 dls-menu-item" style="float: right;">
       <button (click)="onAdd()" type="button" class="btn btn-outline-success"><i class="bi bi-person-plus"></i>
         Add new user</button>
     </div>
   
-    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="users">
+    <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="users">
       <thead>
         <tr>
           <th>Id</th>
@@ -31,10 +31,10 @@
           <td>{{ user.email }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button (click)="onAssign(user)" type="button" class="ml-1 btn btn-outline-success">Assign</button>
-            <button (click)="onView(user)" type="button" class="btn btn-outline-info">View</button>
-            <button (click)="onEdit(user)" type="button"  class="ml-1 btn btn-outline-primary">Edit</button>
-            <button (click)="onDelete(user,mymodal)" type="button" class="ml-1 btn btn-outline-danger">Delete</button>
+            <button (click)="onAssign(user)" type="button" class="ml-1 btn btn-outline-success"><i class="bi bi-clipboard-plus"></i>Assign</button> 
+            <button (click)="onView(user)" type="button" class="btn btn-outline-info"><i class="bi bi-eye"></i>View</button>
+            <button (click)="onEdit(user)" type="button"  class="ml-1 btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</button>
+            <button (click)="onDelete(user,mymodal)" type="button" class="ml-1 btn btn-outline-danger"><i class="bi bi-trash"></i>Delete</button>
           </td>
         </tr>
       </tbody>
