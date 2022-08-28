@@ -40,6 +40,10 @@ export class DetailUserPermissionComponent implements OnInit {
     
   }
   onSave(mode: FormMode) {
+    if(this.userPermission.permission == undefined){
+      this.toastr.error("Select permission",'Error');
+      return;
+    }
     if (mode == FormMode.create) {
       this.service.insertUserPermission(this.userPermission).subscribe(result => {
         this.userPermission.permission = new Permission();

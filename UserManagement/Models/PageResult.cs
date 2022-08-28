@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DomainLayer.Models
+namespace UserManagement.Models
 {
     public class PageResult<T>
     {
