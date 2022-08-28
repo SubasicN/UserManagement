@@ -32,6 +32,19 @@ namespace RepositoryLayer.Repository
             return _context.Permissions.AsEnumerable();
         }
 
+        public IEnumerable<Permission> GetAllForPagination(int? page, int pageSize)
+        {
+            return _context.Permissions.OrderBy(m => m.Id)
+                                       .Skip((page - 1 ?? 0) * pageSize)
+                                       .Take(pageSize)
+                                       .AsEnumerable();
+        }
+
+        public int GetCount()
+        {
+            return _context.Permissions.Count();
+        }
+
         public void Insert(Permission entity)
         {
             if (entity == null)

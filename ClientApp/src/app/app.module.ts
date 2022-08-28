@@ -15,6 +15,7 @@ import { UserComponent } from './user/user.component';
 import { DetailUserComponent } from './user/detail-user/detail-user.component';
 import { UserPermissionComponent } from './user-permission/user-permission.component';
 import { DetailUserPermissionComponent } from './user-permission/detail-user-permission/detail-user-permission.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DetailUserPermissionComponent } from './user-permission/detail-user-per
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-top-right',

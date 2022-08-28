@@ -27,6 +27,16 @@ namespace ServiceLayer.UserPermissionService
             return _repository.GetAll();
         }
 
+        public IEnumerable<UserPermission> GetAllUsersPermissionForPagination(int? page, int pageSize)
+        {
+            return _repository.GetAllForPagination(page, pageSize);
+        }
+
+        public int GetCount()
+        {
+            return _repository.GetCount();
+        }
+
         public IEnumerable<UserPermission> GetPermissionForUser(int userId)
         {
             return _repository.GetPermissionForUser(userId);

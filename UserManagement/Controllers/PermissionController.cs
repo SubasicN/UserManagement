@@ -1,4 +1,5 @@
 ﻿using DomainLayer;
+using DomainLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RepositoryLayer.Repository;
@@ -38,6 +39,23 @@ namespace UserManagement.Controllers
             var result = _permissionService.GetAllPermissions();
             if (result != null)
                 return Ok(result);
+            return BadRequest("No records found");
+        }
+
+        [HttpGet(nameof(GetAllPermissionForPagination))]
+        public IActionResult GetAllPermissionForPagination(int? page, int pageSize)
+        {
+            var resultForNumberOfPage = _permissionService.GetCount();
+            var result = _permissionService.GetAllPermissionsForPagination(page, pageSize);
+            var pageResult = new PageResult<Permission>
+            {
+                Count = resultForNumberOfPage,
+                PageIndex = page ?? 1,
+                PageSize = pageSize,
+                Items = result
+            };
+            if (result != null)
+                return Ok(pageResult);
             return BadRequest("No records found");
         }
 

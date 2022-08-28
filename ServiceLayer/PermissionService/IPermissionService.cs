@@ -8,7 +8,8 @@ namespace ServiceLayer.PermissionService
     public interface IPermissionService
     {
         IEnumerable<Permission> GetAllPermissions();
-
+        IEnumerable<Permission> GetAllPermissionsForPagination(int? page, int pageSize);
+        int GetCount();
         Permission GetPermission(int id);
         void InsertPermission(Permission permission);
         void UpdatePermission(Permission permission);

@@ -44,6 +44,15 @@ namespace RepositoryLayer.Repository
                                           .Include(m => m.permission).AsEnumerable();
         }
 
+        public IEnumerable<UserPermission> GetAllForPagination(int? page, int pageSize)
+        {
+            return _context.UserPermission.Include(m => m.user)
+                                          .Include(m => m.permission)
+                                          .OrderBy(m => m.Id)
+                                          .Skip((page - 1 ?? 0) * pageSize)
+                                          .Take(pageSize)
+                                          .AsEnumerable();
+        }
         public void Insert(UserPermission entity)
         {
             if (entity == null)
@@ -73,5 +82,10 @@ namespace RepositoryLayer.Repository
             _context.UserPermission.Update(entity);
             _context.SaveChanges();
         }
+        public int GetCount()
+        {
+            return _context.UserPermission.Count();
+        }
+
     }
 }

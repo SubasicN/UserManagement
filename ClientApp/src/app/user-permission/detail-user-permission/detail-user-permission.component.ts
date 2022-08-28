@@ -26,10 +26,10 @@ export class DetailUserPermissionComponent implements OnInit {
   ngOnInit(): void {
     switch (this.mode) {
       case FormMode.create:
-        this.title = "Create new user - permission"
+        this.title = "Add permission for selected user"
         break;
       case FormMode.edit:
-        this.title = "Edit user - permission"
+        this.title = "Edit permission for selected user"
         break;
       default:
         this.title = "View user - permission"

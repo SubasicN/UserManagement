@@ -41,6 +41,23 @@ namespace UserManagement.Controllers
             return BadRequest("No records found");
         }
 
+        [HttpGet(nameof(GetAllUsersPermissionForPagination))]
+        public IActionResult GetAllUsersPermissionForPagination(int? page, int pageSize)
+        {
+            var resultForNumberOfPage = _userPermissionService.GetCount();
+            var result = _userPermissionService.GetAllUsersPermissionForPagination(page, pageSize);
+            var pageResult = new PageResult<UserPermission>
+            {
+                Count = resultForNumberOfPage,
+                PageIndex = page ?? 1,
+                PageSize = pageSize,
+                Items = result
+            };
+            if (result != null)
+                return Ok(pageResult);
+            return BadRequest("No records found");
+        }
+
         [HttpGet(nameof(GetPermissionForUser))]
         public IActionResult GetPermissionForUser(int userId)
         {

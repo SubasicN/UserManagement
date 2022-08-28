@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/SharedService.service';
 import { FormMode } from '../enum/formMode.enum';
+import { Pagination } from '../models/pagination.model';
 import { Permission } from '../models/permission.model';
 import { User } from '../models/user.model';
 import { UserPermission } from '../models/userPermission';

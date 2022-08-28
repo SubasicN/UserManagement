@@ -1,4 +1,5 @@
 ﻿using DomainLayer;
+using DomainLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.UserService;
@@ -37,6 +38,23 @@ namespace UserManagement.Controllers
             var result = _userService.GetAllUsers();
             if (result != null)
                 return Ok(result);
+            return BadRequest("No records found");
+        }
+
+        [HttpGet(nameof(GetAllUsersForPagination))]
+        public IActionResult GetAllUsersForPagination(int? page, int pageSize)
+        {
+            var resultForNumberOfPage = _userService.GetCount();
+            var result = _userService.GetAllUsersForPagination(page,pageSize);
+            var pageResult = new PageResult<User>
+            {
+                Count = resultForNumberOfPage,
+                PageIndex = page ?? 1,
+                PageSize = pageSize,
+                Items = result
+            };
+            if (result != null)
+                return Ok(pageResult);
             return BadRequest("No records found");
         }
 

@@ -26,6 +26,16 @@ namespace ServiceLayer.UserService
             return _repository.GetAll();
         }
 
+        public IEnumerable<User> GetAllUsersForPagination(int? page, int pageSize)
+        {
+            return _repository.GetAllForPagination(page, pageSize);
+        }
+
+        public int GetCount()
+        {
+            return _repository.GetCount();
+        }
+
         public User GetUser(int id)
         {
             return _repository.Get(id);

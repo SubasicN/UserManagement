@@ -18,7 +18,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let permission of permissions">
+        <tr *ngFor="let permission of permissions | paginate: {
+                                                                  itemsPerPage: pagination.pageSize,
+                                                                  currentPage: pagination.page,
+                                                                  totalItems: pagination.count
+                                                              }; let i = index">
           <td>{{ permission.id }}</td>
           <td>{{ permission.code }}</td>
           <td>{{ permission.description }}</td>
@@ -29,7 +33,25 @@
           </td>
         </tr>
       </tbody>
-    </table>  
+    </table> 
+    <div class="row">
+      <div class="col-md-6">
+        <pagination-controls
+                             previousLabel="Prev"
+                             nextLabel="Next"
+                             (pageChange)="onPageChange($event)">
+
+        </pagination-controls>
+      </div>
+      <div class="col-md-4">
+        Items per page: 
+        <select (change)="onPageSizeChange($event)">
+          <option *ngFor="let size of pagination.pageSizes" [ngValue]="size">
+              {{ size }}
+          </option>
+        </select>
+      </div>
+    </div> 
   </div>
 
   

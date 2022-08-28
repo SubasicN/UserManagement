@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/SharedService.service';
 import { FormMode } from '../enum/formMode.enum';
+import { Pagination } from '../models/pagination.model';
 import { Permission } from '../models/permission.model';
 
 @Component({
@@ -18,6 +19,7 @@ export class PermissionComponent implements OnInit {
   formMode = FormMode;
 
   public permissions?: Permission[];
+  public pagination: Pagination = new Pagination(1,0,10,[10,20]);
   public mode: FormMode = FormMode.table;
   public order: boolean = false;
   public permissionForEdit: Permission;
@@ -32,8 +34,9 @@ export class PermissionComponent implements OnInit {
 
 
   refreshList() {
-    this.service.getAllPermissions().subscribe(result => {
-      this.permissions = result;
+    this.service.getAllPermissionsForPagination(this.pagination).subscribe(result => {
+      this.permissions = result.items;
+      this.pagination.count = result.count;
     })
   }
 
@@ -64,5 +67,14 @@ export class PermissionComponent implements OnInit {
       this.refreshList();
     }
     this.mode = mode;
+  }
+  onPageChange($event){
+    this.pagination.page = $event;
+    this.refreshList();
+  }
+  onPageSizeChange($event){
+    this.pagination.pageSize = $event.target.value;
+    this.pagination.page = 1;
+    this.refreshList();
   }
 }
