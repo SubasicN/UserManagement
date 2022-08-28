@@ -31,6 +31,17 @@ namespace RepositoryLayer.Repository
                                           .Where(m => m.user.Id == userId).AsEnumerable();
         }
 
+        public IEnumerable<UserPermission> GetPermissionForUserWithPagination(int userId,int? page, int pageSize)
+        {
+            return _context.UserPermission.Include(m => m.user)
+                                          .Include(m => m.permission)
+                                          .Where(m => m.user.Id == userId)
+                                          .OrderBy(m => m.Id)
+                                          .Skip((page - 1 ?? 0) * pageSize)
+                                          .Take(pageSize)
+                                          .AsEnumerable();
+        }
+
         public UserPermission Get(int id)
         {
             return _context.UserPermission.Include(m => m.user)

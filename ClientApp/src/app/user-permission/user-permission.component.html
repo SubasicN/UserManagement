@@ -11,14 +11,18 @@
     <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="userPermissions">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Description</th>
+                <th (click)="sortNumber('id')"><i class="ml-1 bi bi-arrow-down-up"></i>  Id</th>
+                <th (click)="sortString('code')"><i class="ml-1 bi bi-arrow-down-up"></i>  Code</th>
+                <th (click)="sortString('description')"><i class="ml-1 bi bi-arrow-down-up"></i>  Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let userPermission of userPermissions">
+            <tr *ngFor="let userPermission of userPermissions | paginate: {
+                                                                            itemsPerPage: pagination.pageSize,
+                                                                            currentPage: pagination.page,
+                                                                            totalItems: pagination.count
+                                                                          }; let i = index">
                 <td>{{ userPermission.id }}</td>
                 <td>{{ userPermission.permission.code }}</td>
                 <td>{{ userPermission.permission.description}}</td>
@@ -29,6 +33,24 @@
             </tr>
         </tbody>
     </table>
+    <div class="row">
+      <div class="col-md-6">
+        <pagination-controls
+                             previousLabel="Prev"
+                             nextLabel="Next"
+                             (pageChange)="onPageChange($event)">
+
+        </pagination-controls>
+      </div>
+      <div class="col-md-4">
+        Items per page: 
+        <select (change)="onPageSizeChange($event)">
+          <option *ngFor="let size of pagination.pageSizes" [ngValue]="size">
+              {{ size }}
+          </option>
+        </select>
+      </div>
+    </div> 
 </div>
 
 <div id="comp-render" *ngIf="mode == formMode.create">

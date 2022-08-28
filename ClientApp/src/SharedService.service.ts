@@ -66,9 +66,12 @@ export class SharedService {
   }
   getAllUsersPermissionForPagination(pagination: Pagination): Observable<PageRequest<UserPermission>> {
     return this.http.get<PageRequest<UserPermission>>(this.ApiUrl + '/userPermission/GetAllUsersPermissionForPagination?page='+pagination.page + '&&pageSize='+pagination.pageSize);
-  }
+  }  
   getPermissionForUser(userID : any): Observable<any[]> {
     return this.http.get<any[]>(this.ApiUrl + '/userPermission/GetPermissionForUser?userId='+userID);
+  }
+  getPermissionForUserWithPagination(userID : any, pagination: Pagination): Observable<PageRequest<UserPermission>> {
+    return this.http.get<PageRequest<UserPermission>>(this.ApiUrl + '/userPermission/GetPermissionForUserWithPagination?userId='+userID+'&&page='+pagination.page + '&&pageSize='+pagination.pageSize);
   }
   getUserPermission(userPermission: any) {
     return this.http.get<any>(this.ApiUrl + '/userPermission/GetUserPermission', userPermission);
