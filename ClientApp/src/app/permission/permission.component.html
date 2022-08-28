@@ -11,9 +11,9 @@
     <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="permissions">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Code</th>
-          <th>Description</th>
+          <th (click)="sortNumber('id')"><i class="ml-1 bi bi-arrow-down-up"></i>   Id</th>
+          <th (click)="sortString('code')"><i class="ml-1 bi bi-arrow-down-up"></i>  Code</th>
+          <th (click)="sortString('description')"><i class="ml-1 bi bi-arrow-down-up"></i>  Description</th>
           <th>Actions</th>
         </tr>
       </thead>

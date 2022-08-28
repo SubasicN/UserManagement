@@ -11,13 +11,13 @@
     <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="users">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Email</th>
-          <th>Status</th>
+          <th (click)="sortNumber('id')"><i class="ml-1 bi bi-arrow-down-up"></i>  Id</th>
+          <th (click)="sortString('firstName')"><i class="ml-1 bi bi-arrow-down-up"></i>  First name</th>
+          <th (click)="sortString('lastName')"><i class="ml-1 bi bi-arrow-down-up"></i>  Last name</th>
+          <th (click)="sortString('username')"><i class="ml-1 bi bi-arrow-down-up"></i>  Username</th>
+          <th (click)="sortString('password')"><i class="ml-1 bi bi-arrow-down-up"></i>  Password</th>
+          <th (click)="sortString('email')"><i class="ml-1 bi bi-arrow-down-up"></i>  Email</th>
+          <th (click)="sortString('status')"><i class="ml-1 bi bi-arrow-down-up"></i>  Status</th>
           <th>Actions</th>
         </tr>
       </thead>

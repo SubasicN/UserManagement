@@ -21,12 +21,12 @@ export class UserComponent implements OnInit {
   public users?: User[];
   public mode: FormMode = FormMode.table;
   public modeForAssign: FormMode = FormMode.create;
-  public pagination: Pagination = new Pagination(1,0,10,[10,20]);
+  public pagination: Pagination = new Pagination(1, 0, 10, [10, 20]);
   public order: boolean = false;
   public userForEdit: User;
   public userForView: User;
-  
-  constructor(private router:Router ,http: HttpClient, private service: SharedService,private toastr: ToastrService,private modalService: NgbModal) { 
+
+  constructor(private router: Router, http: HttpClient, private service: SharedService, private toastr: ToastrService, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -53,35 +53,54 @@ export class UserComponent implements OnInit {
     this.mode = FormMode.view;
     this.modeForAssign = FormMode.view;
   }
-  onAssign(user:User){
+  onAssign(user: User) {
     this.userForView = user;
     this.mode = FormMode.view;
     this.modeForAssign = FormMode.create;
   }
-  onDelete(user: User,content : any) {
-    
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  onDelete(user: User, content: any) {
+
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.service.deleteUser(user.id).subscribe(result => {
-        this.toastr.success(result,'Success');
+        this.toastr.success(result, 'Success');
         this.refreshList();
       }, error => console.error(error));
-    },error => {})
+    }, error => { })
   }
-  
+
   public changeMode(mode: FormMode): void {
     if (this.mode == FormMode.create || this.mode == FormMode.edit) {
       this.refreshList();
     }
     this.mode = mode;
   }
-  onPageChange($event){
+  onPageChange($event) {
     this.pagination.page = $event;
     this.refreshList();
   }
-  onPageSizeChange(event){
+  onPageSizeChange(event) {
     this.pagination.pageSize = event.target.value;
     this.pagination.page = 1;
     this.refreshList();
+  }
+  sortNumber(columnName: any) {
+    this.order = !this.order;
+    if (this.order) {
+      let newArr = this.users?.sort((a, b) => a[columnName] - b[columnName]);
+      this.users = newArr;
+    } else {
+      let newArr = this.users?.sort((a,b) => b[columnName] - a[columnName]);
+      this.users = newArr;
+    }
+  }
+  sortString(columnName: any){
+    this.order = !this.order;
+
+    if(this.order){
+      this.users?.sort((a,b) => (a[columnName] > b[columnName] ? -1 : 1));
+    }else{
+      this.users?.sort((a,b) => (b[columnName] > a[columnName] ? -1 : 1));
+    }
   }
 
 }

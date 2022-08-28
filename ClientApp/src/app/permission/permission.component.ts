@@ -77,4 +77,23 @@ export class PermissionComponent implements OnInit {
     this.pagination.page = 1;
     this.refreshList();
   }
+  sortNumber(columnName: any) {
+    this.order = !this.order;
+    if (this.order) {
+      let newArr = this.permissions?.sort((a, b) => a[columnName] - b[columnName]);
+      this.permissions = newArr;
+    } else {
+      let newArr = this.permissions?.sort((a,b) => b[columnName] - a[columnName]);
+      this.permissions = newArr;
+    }
+  }
+  sortString(columnName: any){
+    this.order = !this.order;
+
+    if(this.order){
+      this.permissions?.sort((a,b) => (a[columnName] > b[columnName] ? -1 : 1));
+    }else{
+      this.permissions?.sort((a,b) => (b[columnName] > a[columnName] ? -1 : 1));
+    }
+  }
 }
