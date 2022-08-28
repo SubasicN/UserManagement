@@ -31,11 +31,11 @@ namespace RepositoryLayer.Repository
                                           .Where(m => m.user.Id == userId).AsEnumerable();
         }
 
-        public IEnumerable<UserPermission> GetPermissionForUserWithPagination(int userId,int? page, int pageSize)
+        public IEnumerable<UserPermission> GetPermissionForUserWithPagination(int userId,int? page, int pageSize, string searchValue)
         {
             return _context.UserPermission.Include(m => m.user)
                                           .Include(m => m.permission)
-                                          .Where(m => m.user.Id == userId)
+                                          .Where(m => m.user.Id == userId && (m.Id.ToString().Contains(searchValue) || m.permission.Code.Contains(searchValue) || m.permission.Description.Contains(searchValue) || searchValue == null))
                                           .OrderBy(m => m.Id)
                                           .Skip((page - 1 ?? 0) * pageSize)
                                           .Take(pageSize)
@@ -55,7 +55,7 @@ namespace RepositoryLayer.Repository
                                           .Include(m => m.permission).AsEnumerable();
         }
 
-        public IEnumerable<UserPermission> GetAllForPagination(int? page, int pageSize)
+        public IEnumerable<UserPermission> GetAllForPagination(int? page, int pageSize, string searchValue)
         {
             return _context.UserPermission.Include(m => m.user)
                                           .Include(m => m.permission)

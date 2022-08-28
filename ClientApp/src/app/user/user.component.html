@@ -2,12 +2,16 @@
     <h1 id="tableLabel">Users</h1>
   
     <p *ngIf="!users"><em>Loading...</em></p>
-  
-    <div class="mb-3 dls-menu-item" style="float: right;">
-      <button (click)="onAdd()" type="button" class="btn btn-outline-success"><i class="bi bi-person-plus"></i>
-        Add new user</button>
+      <div class="mb-3 dls-menu-item" style="float: right;">
+        <button (click)="onAdd()" type="button" class="btn btn-outline-success"><i class="bi bi-person-plus"></i>
+          Add new user</button>
+      </div>
+      
+    <div class="form-group col-md-4" style="float: left;">
+      <input (keydown.enter)="searchMethod()" type="text" class="form-control" [(ngModel)]="search" name="search" placeholder="Type text and press enter" />
     </div>
-  
+
+    
     <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="users">
       <thead>
         <tr>

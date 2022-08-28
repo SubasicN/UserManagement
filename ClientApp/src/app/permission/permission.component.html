@@ -7,6 +7,10 @@
       <button (click)="onAdd()" type="button" class="btn btn-outline-success">
         Add new permission</button>
     </div>
+
+    <div class="form-group col-md-4" style="float: left;">
+      <input (keydown.enter)="searchMethod()" type="text" class="form-control" [(ngModel)]="search" name="search" placeholder="Type text and press enter" />
+    </div>
   
     <table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="permissions">
       <thead>

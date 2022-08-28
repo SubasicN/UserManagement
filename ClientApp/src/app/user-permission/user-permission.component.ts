@@ -25,6 +25,7 @@ export class UserPermissionComponent implements OnInit {
   public userPermissions?: UserPermission[];
   public userPermissionForEdit: UserPermission;
   public userPermissionForAdd: UserPermission;
+  public search:string = "";
   @Input() user: User;
   @Input() modeForAssign: FormMode;
 
@@ -40,7 +41,7 @@ export class UserPermissionComponent implements OnInit {
   }
 
   getPermissionsForUser() {
-    this.service.getPermissionForUserWithPagination(this.user.id,this.pagination).subscribe(result => {
+    this.service.getPermissionForUserWithPagination(this.user.id,this.pagination,this.search).subscribe(result => {
       this.userPermissions = result.items;
       this.pagination.count = result.count;
     })
@@ -95,6 +96,9 @@ export class UserPermissionComponent implements OnInit {
     }else{
       this.userPermissions?.sort((a,b) => (b.permission[columnName] > a.permission[columnName] ? -1 : 1));
     }
+  }
+  searchMethod(){
+    this.getPermissionsForUser();
   }
   
 

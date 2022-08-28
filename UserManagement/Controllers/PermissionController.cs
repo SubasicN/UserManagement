@@ -43,10 +43,10 @@ namespace UserManagement.Controllers
         }
 
         [HttpGet(nameof(GetAllPermissionForPagination))]
-        public IActionResult GetAllPermissionForPagination(int? page, int pageSize)
+        public IActionResult GetAllPermissionForPagination(int? page, int pageSize,string searchValue)
         {
             var resultForNumberOfPage = _permissionService.GetCount();
-            var result = _permissionService.GetAllPermissionsForPagination(page, pageSize);
+            var result = _permissionService.GetAllPermissionsForPagination(page, pageSize, searchValue);
             var pageResult = new PageResult<Permission>
             {
                 Count = resultForNumberOfPage,

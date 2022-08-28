@@ -33,9 +33,15 @@ namespace RepositoryLayer.Repository
             return _context.Users.AsEnumerable();
         }
 
-        public IEnumerable<User> GetAllForPagination(int? page, int pageSize)
+        public IEnumerable<User> GetAllForPagination(int? page, int pageSize,string searchValue)
         {
-            return _context.Users.OrderBy(m => m.Id)
+            return _context.Users.Where(m => m.FirstName.Contains(searchValue)
+                                             || m.LastName.Contains(searchValue)
+                                             || m.Username.Contains(searchValue)
+                                             || m.Email.Contains(searchValue)
+                                             || m.Id.ToString().Contains(searchValue)
+                                             || searchValue == null)
+                                  .OrderBy(m => m.Id)
                                  .Skip((page - 1 ?? 0) * pageSize)
                                  .Take(pageSize)
                                  .AsEnumerable();

@@ -42,10 +42,10 @@ namespace UserManagement.Controllers
         }
 
         [HttpGet(nameof(GetAllUsersPermissionForPagination))]
-        public IActionResult GetAllUsersPermissionForPagination(int? page, int pageSize)
+        public IActionResult GetAllUsersPermissionForPagination(int? page, int pageSize,string searchValue)
         {
             var resultForNumberOfPage = _userPermissionService.GetCount();
-            var result = _userPermissionService.GetAllUsersPermissionForPagination(page, pageSize);
+            var result = _userPermissionService.GetAllUsersPermissionForPagination(page, pageSize, searchValue);
             var pageResult = new PageResult<UserPermission>
             {
                 Count = resultForNumberOfPage,
@@ -68,10 +68,10 @@ namespace UserManagement.Controllers
         }
 
         [HttpGet(nameof(GetPermissionForUserWithPagination))]
-        public IActionResult GetPermissionForUserWithPagination(int userId,int? page, int pageSize)
+        public IActionResult GetPermissionForUserWithPagination(int userId,int? page, int pageSize,string searchValue)
         {
             var resultForNumberOfPage = _userPermissionService.GetPermissionForUser(userId).Count();
-            var result = _userPermissionService.GetPermissionForUserWithPagination(userId,page, pageSize);
+            var result = _userPermissionService.GetPermissionForUserWithPagination(userId,page, pageSize, searchValue);
             var pageResult = new PageResult<UserPermission>
             {
                 Count = resultForNumberOfPage,

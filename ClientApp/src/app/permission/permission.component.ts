@@ -19,6 +19,7 @@ export class PermissionComponent implements OnInit {
   formMode = FormMode;
 
   public permissions?: Permission[];
+  public search: string="";
   public pagination: Pagination = new Pagination(1,0,10,[10,20]);
   public mode: FormMode = FormMode.table;
   public order: boolean = false;
@@ -34,7 +35,7 @@ export class PermissionComponent implements OnInit {
 
 
   refreshList() {
-    this.service.getAllPermissionsForPagination(this.pagination).subscribe(result => {
+    this.service.getAllPermissionsForPagination(this.pagination,this.search).subscribe(result => {
       this.permissions = result.items;
       this.pagination.count = result.count;
     })
@@ -95,5 +96,8 @@ export class PermissionComponent implements OnInit {
     }else{
       this.permissions?.sort((a,b) => (b[columnName] > a[columnName] ? -1 : 1));
     }
+  }
+  searchMethod(){
+    this.refreshList();
   }
 }

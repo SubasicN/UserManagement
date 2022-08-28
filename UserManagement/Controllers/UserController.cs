@@ -42,10 +42,10 @@ namespace UserManagement.Controllers
         }
 
         [HttpGet(nameof(GetAllUsersForPagination))]
-        public IActionResult GetAllUsersForPagination(int? page, int pageSize)
+        public IActionResult GetAllUsersForPagination(int? page, int pageSize,string searchValue)
         {
             var resultForNumberOfPage = _userService.GetCount();
-            var result = _userService.GetAllUsersForPagination(page,pageSize);
+            var result = _userService.GetAllUsersForPagination(page,pageSize, searchValue);
             var pageResult = new PageResult<User>
             {
                 Count = resultForNumberOfPage,

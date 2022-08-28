@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
 
   public users?: User[];
   public mode: FormMode = FormMode.table;
+  public search: string = "";
   public modeForAssign: FormMode = FormMode.create;
   public pagination: Pagination = new Pagination(1, 0, 10, [10, 20]);
   public order: boolean = false;
@@ -34,7 +35,7 @@ export class UserComponent implements OnInit {
   }
 
   refreshList() {
-    this.service.getAllUsersForPagination(this.pagination).subscribe(result => {
+    this.service.getAllUsersForPagination(this.pagination,this.search).subscribe(result => {
       this.users = result.items;
       this.pagination.count = result.count;
     })
@@ -101,6 +102,9 @@ export class UserComponent implements OnInit {
     }else{
       this.users?.sort((a,b) => (b[columnName] > a[columnName] ? -1 : 1));
     }
+  }
+  searchMethod(){
+      this.refreshList();
   }
 
 }

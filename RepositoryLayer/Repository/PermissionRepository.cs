@@ -32,9 +32,10 @@ namespace RepositoryLayer.Repository
             return _context.Permissions.AsEnumerable();
         }
 
-        public IEnumerable<Permission> GetAllForPagination(int? page, int pageSize)
+        public IEnumerable<Permission> GetAllForPagination(int? page, int pageSize,string searchValue)
         {
-            return _context.Permissions.OrderBy(m => m.Id)
+            return _context.Permissions.Where(m => m.Id.ToString().Contains(searchValue) || m.Code.Contains(searchValue) || m.Description.Contains(searchValue) || searchValue == null)
+                                        .OrderBy(m => m.Id)
                                        .Skip((page - 1 ?? 0) * pageSize)
                                        .Take(pageSize)
                                        .AsEnumerable();
