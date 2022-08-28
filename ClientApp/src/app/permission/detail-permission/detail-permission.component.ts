@@ -43,13 +43,13 @@ export class DetailPermissionComponent implements OnInit {
       this.service.insertPermmision(this.permission).subscribe(result => {
         this.permission = new Permission();
         this.toastr.success(result,"Success");
-      }, error => this.toastr.error(error,"Error"));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     }
     else if (mode == FormMode.edit) {
       this.service.updatetPermmision(this.permission).subscribe(result => {
         this.toastr.success(result,"Success");
         this.onBack();
-      }, error => this.toastr.error(error,"Error"));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     }
   }
   

@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UserManagement.Extensions;
 
 namespace UserManagement
 {
@@ -58,6 +59,8 @@ namespace UserManagement
             app.UseCors(x => x.AllowAnyOrigin()
                               .AllowAnyMethod()
                               .AllowAnyHeader());
+
+            app.ConfigureExceptionHandler();
 
             app.UseHttpsRedirection();
 

@@ -59,7 +59,7 @@ export class PermissionComponent implements OnInit {
       this.service.deletePermmision(permission.id).subscribe(result => {
         this.toastr.success(result,'Success');
         this.refreshList();
-      }, error => console.error(error));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     },error => {})
   }
 

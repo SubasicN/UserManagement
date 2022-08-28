@@ -44,13 +44,13 @@ export class DetailUserComponent implements OnInit {
       this.service.insertUser(this.user).subscribe(result => {
         this.user = new User();
         this.toastr.success(result,"Success");
-      }, error => this.toastr.error(error,"Error"));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     }
     else if (mode == FormMode.edit) {
       this.service.updatetUser(this.user).subscribe(result => {
         this.toastr.success(result,"Success");
         this.onBack();
-      }, error => this.toastr.error(error,"Error"));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     }
   }
 

@@ -44,13 +44,13 @@ export class DetailUserPermissionComponent implements OnInit {
       this.service.insertUserPermission(this.userPermission).subscribe(result => {
         this.userPermission.permission = new Permission();
         this.toastr.success(result,"Success");
-      }, error => this.toastr.error(error,"Error"));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     }
     else if (mode == FormMode.edit) {
       this.service.updatetUserPermission(this.userPermission).subscribe(result => {
         this.toastr.success(result,"Success");
         this.onBack();
-      }, error => this.toastr.error(error,"Error"));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     }
   }
 
@@ -61,7 +61,7 @@ export class DetailUserPermissionComponent implements OnInit {
   getPermissions(){
       this.service.getAllPermissions().subscribe(result => {
         this.permissions = result;
-      }, error => this.toastr.error(error,"Error"))
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'))
   }
   onPermissionChange(permission: any): void {
     this.userPermission.permission = permission;

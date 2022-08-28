@@ -56,7 +56,7 @@ export class UserPermissionComponent implements OnInit {
       this.service.deleteUserPermission(userPermission.id).subscribe(result => {
         this.toastr.success(result,'Success');
         this.getPermissionsForUser();
-      }, error => console.error(error));
+      }, error => this.toastr.error(JSON.parse(error.error).Message,'Error'));
     },error => {});
   }
   onEdit(userPermission: UserPermission) {
